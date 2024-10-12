@@ -1,0 +1,62 @@
+3D codes
+in the <body> part:
+    <svg width= "600" height="600" viewBox="">
+    or otherwise you can do <svg width= "100%" height="100%" viewBox="0 0 600 600">
+        come up with some graphs
+        circle: 
+        <circle cx="300" cy="300" r="50" fill="blue" stroke ="green" stroke-width="10"></circle>
+        <circle cx="300" cy="350" r="50" fill="blue"></circle>
+        rectangle:
+        <rect width="200" height="100" x="375" y="375" fill="purple"></rect>
+        polygon:
+        <polygon points ="100,100 200,200 300,100" fill="green"></polygon>
+        line:
+        <line x1="300" y1="390" x2="380" y2="390" stroke ="black" stroke-width="2"></line>
+        come up with text:
+        <text x="50" y="50" font-size="30"></text>
+            <tspan x="50" dy="0">Hello</tspan>  
+            <tspan x="50" dy="0">World</tspan>  -->
+        dx 和 dy 是上一段文字的终点
+
+    </svg>
+    </svg>
+
+JQuery: 将所有Jquery代码放在整个body部分的最后
+<script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+<script>
+ $("").(,);基本形式
+$("h2").css("color","#00000");
+$("h2").fadeOut(500);
+$("h2").text("New Title Here");
+ $("h2").fadeTo(500,0);
+ $("#submit").on("click", function(){
+            //mouseover 鼠标一上去就可以跳转 mouseout 鼠标移开就可以跳转 mousedown 鼠标摁下去就跳转 dblclick
+          
+          
+          let theirName = $("#thename").val();
+          let theirChoice = $(".theirChoice:checked").val();
+ 
+          $("#response").text(`Hi ${theirName}, so you like ${theirChoice} too?`);
+        });
+
+</script>
+
+function calculateTip(bill){
+return bill * 0.20;
+}
+Arguments/Parameters
+calculateTip(10);
+function message(name){
+    return "Hello " + name + "!";
+    }
+    message("Jeremy");
+
+    var person = {
+        name : "John Doe",
+        age : 22,
+        whoami : function(){ return this.name; }
+        }
+        person.whoami()
+        
+
+    
