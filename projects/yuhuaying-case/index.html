@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Leaflet Map</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="leaflet/leaflet.css">
+    <style>
+        #mapid { height: 100vh; width:80vw; }
+        .sidebar {
+            width: 20vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            right: 0;
+            overflow-y: auto;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mapid"></div>
+
+    <div class="sidebar">
+            <ul class="list-group sidebar">
+                <li> 余华英及其同伙实施拐卖时间线</li>
+                <li id="btn-1" class="list-group-item" data-title="1" data-lat="29.708577" data-lng="105.7181826" data-zoom="7" data-place="重庆大足" data-description="1992年，余华英通过中间人将自己与情人龚显良的私生子送到河北邯郸，获得5000元报酬。">1992年</li>
+                <li id="btn-2" class="list-group-item" data-title="2" data-lat="27.7063685" data-lng="106.942592" data-zoom="7" data-place="贵州遵义" data-description="1993年正月初七，6岁的蔡某胜被余华英诱骗到火车上，并被卖到河北邯郸。余华英因此获利3000元。">1993年1月</li>
+                <li id="btn-3" class="list-group-item" data-title="3" data-lat="26.232989" data-lng="105.939606" data-zoom="7" data-place="贵州安顺" data-description="1993年2月28日，余华英来到贵州安顺，诱拐谌姓兄弟，并将5岁的弟弟卖到邯郸。">1993年2月</li>
+                <li id="btn-4" class="list-group-item" data-title="4" data-lat="27.7063685" data-lng="106.942592" data-zoom="7" data-place="贵州遵义" data-description="1993年8月，余华英和龚显良拐走了贵州遵义另一对兄弟，卖到河北邯郸。">1993年8月</li>
+                <li id="btn-5" class="list-group-item" data-title="5" data-lat="26.2708185" data-lng="107.5152305" data-zoom="7" data-place="贵州都匀" data-description="1994年7月，余华英和龚显良在贵州都匀将5岁的肖某俊以“买冰棍吃”为诱饵带走，卖到邯郸。">1994年7月</li>
+                <li id="btn-6" class="list-group-item" data-title="6" data-lat="26.232989" data-lng="105.939606" data-zoom="7" data-place="贵州安顺" data-description="1994年10月，余华英又在安顺市拐走了王某龙、王某能两兄弟">1994年10月</li>
+                <li id="btn-7" class="list-group-item" data-title="7" data-lat="26.2708185" data-lng="107.5152305" data-zoom="7" data-place="贵州都匀" data-description="1995年，余华英和龚显良来到贵阳“找小孩买到邯郸”。7月，在都匀拐走了4岁半的郭某令和7岁半的郭某德。">1995年7月</li>
+                <li id="btn-8" class="list-group-item" data-title="8" data-lat="26.561032" data-lng="106.6997822" data-zoom="7" data-place="贵州贵阳" data-description="1995年冬天，余华英将杨妞花诱骗到贵阳火车站，坐火车前往邯郸。">1995年12月</li>
+                <li id="btn-9" class="list-group-item" data-title="9" data-lat="29.708577" data-lng="105.7181826" data-zoom="7" data-place="重庆大足" data-description="1996年6月，余华英伙同龚显良在重庆大足，将5岁的柏某友拐走。并在7月将8岁的胡某兰、6岁的胡某北两姐弟拐卖。">1996年6月</li>
+                <li id="btn-10" class="list-group-item" data-title="10" data-lat="26.561032" data-lng="106.6997822" data-zoom="7" data-place="贵州贵阳" data-description="1996年10月，两人又从贵阳市拐走一名男孩。">1996年10月</li>
+                <li id="btn-11" class="list-group-item" data-title="11" data-lat="25.59238" data-lng="100.2305" data-zoom="7" data-place="云南大理" data-description="2002年2月，余华英的丈夫王加文拐走了住在云南省大理白族自治州下关镇孩子李聪，随后交由余华英乘坐火车带到邯郸，卖给当地一对夫妇。">2002年2月</li>
+                <li id="btn-12" class="list-group-item" data-title="12" data-lat="26.8806477" data-lng="100.2245593" data-zoom="7" data-place="云南丽江" data-description="2003年12月，两人把王加文在云南丽江拐带的男孩陈某勇带到邯郸卖掉。">2003年12月</li>
+            </ul>
+    </div>
+
+    <script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+    <script src="leaflet/leaflet.js"></script>
+    <script src="js/d3.v5.min.js"></script>
+    <script type="text/javascript">
+    
+
+
+
+    //starting position of the map
+    var mymap = L.map('mapid').setView([27.2858633, 105.2865997], 5);
+
+    var CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+    }).addTo(mymap);
+
+
+    d3.csv("yuhuaying.csv").then(function(data){
+
+
+        data.forEach(function(d){
+
+            L.marker([+d["Latitude"],+d["Longitude"]]) //{icon: L.icon({iconUrl: "" })}
+                //.bindPopup("<h2>" + d["Place"] + "</h2><p>" + d["Description"] + "</p>")
+                .addTo(mymap);
+
+        });
+
+    });
+
+    const popup = L.popup();
+
+    $(".list-group-item").on("click", function(){
+        const title = $(this).attr("data-title");
+        const lat   = $(this).attr("data-lat");
+        const lng   = $(this).attr("data-lng");
+        const zoom  = $(this).attr("data-zoom");
+        const Place  = $(this).attr("data-place");
+        const description  = $(this).attr("data-description");
+
+        mymap.flyTo([lat, lng], zoom);
+        popup.setLatLng([lat, lng]);
+        popup.setContent(`<h2 style="font-family: Arial, sans-serif; font-size: 20px;">${Place}<br>${description}</h2>`);
+        popup.openOn(mymap);
+    });
+
+
+        //code to fly to specific point
+        //mymap.flyTo(["lat", "lng"], "zoom");
+
+        //$("something").on("click", function(){
+        
+        //})
+
+
+    </script>
+</body>
+
+</html>
